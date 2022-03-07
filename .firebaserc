@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "redux-login-ingresos-app": {
+      "hosting": {
+        "ingresoEgreso": [
+          "redux-login-ingresos-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "redux-login-ingresos-app"
+  }
+}

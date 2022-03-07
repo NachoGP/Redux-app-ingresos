@@ -4,13 +4,11 @@
 	 viewBox="0 0 15.9 16.1" style="enable-background:new 0 0 15.9 16.1;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#F24181;}
-	.st1{font-family:'MyriadPro-Regular';}
-	.st2{font-size:7px;}
-	.st3{fill:#232323;}
-	.st4{font-size:3px;}
+	.st1{fill:#D33777;stroke:#EFA8C5;stroke-width:0.5;stroke-miterlimit:10;}
 </style>
 <g>
-	<text transform="matrix(1 0 0 1 0.3123 10.2989)" class="st0 st1 st2">CioG.</text>
-	<text transform="matrix(1 0 0 1 1.5361 13.1016)" class="st3 st1 st4">Developer</text>
+	<polygon class="st0" points="14.8,11.5 8.3,15.2 1.7,11.5 1.7,4.2 8.3,0.6 14.8,4.2 	"/>
+	<polygon class="st0" points="13.2,13.8 5.6,15.3 0.4,9.6 2.7,2.5 10.3,1 15.5,6.7 	"/>
+	<polygon class="st1" points="12.3,8.3 9.9,10 7.2,8.7 7,5.7 9.4,4.1 12.1,5.4 	"/>
 </g>
 </svg>

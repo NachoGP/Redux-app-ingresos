@@ -104,6 +104,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "ingresoEgreso:build:production",
+            "firebaseProject": "redux-login-ingresos-app",
+            "firebaseHostingSite": "redux-login-ingresos-app"
+          }
         }
       }
     }
