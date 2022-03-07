@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,5 +8,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class AppComponent {
   title = 'ingresoEgreso';
-  constructor(firestore: AngularFirestore) {}
+  constructor(firestore: AngularFirestore, private authService: AuthService) {
+
+    this.authService.initAuthListener()
+
+  }
 }
