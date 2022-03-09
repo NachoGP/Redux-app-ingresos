@@ -4,27 +4,29 @@
           <div class="card-body">
             <h4 class="card-title">Agregar Ingreso / Egreso</h4>
             <p class="card-description">
-              Especifique el monto y el tipo
+              Especifique la cantidad y el tipo
             </p>
 
-            <form>
+            <form [formGroup]="ingresoForm" (ngSubmit)="guardar()" >
               
               <div class="form-group">
                 <label>Descripción</label>
-                <input type="text" 
+                <input type="text"
+                formControName="description"
                        class="form-control" 
                        placeholder="Descripción"
                        name="descripcion">
               </div>
 
               <div class="form-group">
-                  <label>Monto</label>
-                  <input type="number" 
+                  <label>Cantidad</label>
+                  <input type="number"
+                  formControName="cantidad"
                          class="form-control" 
-                         placeholder="Monto"
-                         name="monto">
+                         placeholder="Cantidad"
+                         name="cantidad">
                     <p>
-                      Debe de ser un monto positivo
+                      Debe de ser una cantidad positivo
                     </p>
                 </div>
 
@@ -36,7 +38,7 @@
               </div>
 
               <hr>
-              <button type="button" class="btn btn-success mr-2">
+              <button type="submit" class="btn btn-success mr-2" [disabled]="ingresoForm.invalid">
                 <i class="fa fa-save"></i>
                 Agregar
               </button>
