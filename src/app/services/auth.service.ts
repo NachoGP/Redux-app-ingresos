@@ -14,7 +14,13 @@ import { Usuario } from '../models/usuario.model';
 export class AuthService {
 
   userSubs!: Subscription;
-  
+
+ private _user!: Usuario;
+
+get user() {
+  return this._user;
+}
+
   constructor(
     public auth: AngularFireAuth,
     public firestore: AngularFirestore,
@@ -31,6 +37,7 @@ export class AuthService {
           .subscribe((firestoreUser: any) => {
             console.log('firestoreUser', firestoreUser);
             const user = Usuario.fromFirebase(firestoreUser);
+            this._user = user;
             this.store.dispatch(authActions.setUser({ user }) );
 
           })
