@@ -18,7 +18,7 @@ export class EstadisticaComponent implements OnInit {
   totalEgresos :number = 0;
   totalIngresos:number = 0;
 
-  public doughnutChartLabels: Label[] = ['Ingresos', 'Egresos'];
+  public doughnutChartLabels: Label[] = ['Ingresos', 'Gastos'];
   public doughnutChartData: MultiDataSet = [[]];
 
   constructor( private store: Store<AppState> ) {}
