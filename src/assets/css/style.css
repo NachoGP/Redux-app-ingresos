@@ -14936,6 +14936,8 @@ ul {
   background-size: cover; }
 
 .auth.theme-one .auto-form-wrapper {
+  max-width: 330px;
+  margin: 0 auto;
   background: #ffffff;
   padding: 40px 40px 10px;
   border-radius: 4px;
