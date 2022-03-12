@@ -1,83 +1,82 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-//ngRx
-import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
-import { AppState } from 'src/app/app.reducer';
 
-import { AuthService } from 'src/app/services/auth.service';
-import * as ui from 'src/app/shared/ui.actions';
-import Swal from 'sweetalert2';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../app.reducer';
+import * as ui from '../../shared/ui.actions';
+
+import Swal from 'sweetalert2'
+import { AuthService } from '../../services/auth.service';
+
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styles: []
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  loginForm!: FormGroup;
+  loginForm: FormGroup;
   cargando: boolean = false;
-  uiSubscription!: Subscription;
+  uiSubscription: Subscription;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthService,
-    private store: Store<AppState>
-  ) {
 
-  }
+  constructor( private fb: FormBuilder,
+               private authService: AuthService,
+               private store: Store<AppState>,
+               private router: Router ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loginForm = this.fb.group({
-      email: ['nacho@a.com', [Validators.required, Validators.email]],
-      password: ['123456', [Validators.required, Validators.minLength(6)]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required ],
     });
-    //creo otra subcripción al store:
+
     this.uiSubscription = this.store.select('ui')
-                        .subscribe(ui =>
-                          this.cargando = ui.isLoading)
+                              .subscribe( ui => {
+                                this.cargando = ui.isLoading;
+                                console.log('cargando subs');
+                              });
 
   }
 
-  ngOnDestroy(): void {
-    //Haremos limpieza para evitar subcriciones duplicadas
+  ngOnDestroy() {
     this.uiSubscription.unsubscribe();
   }
 
-  loginUsuario() {
-    if (this.loginForm.invalid) { return; }
+  login() {
 
-    this.store.dispatch(ui.isLoading());
+    if ( this.loginForm.invalid ) { return; }
+
+    this.store.dispatch( ui.isLoading() );
+
 
     // Swal.fire({
-    //   title: 'Espere, por favor!',
-
-    //   didOpen: () => {
+    //   title: 'Espere por favor',
+    //   onBeforeOpen: () => {
     //     Swal.showLoading()
     //   }
     // });
 
     const { email, password } = this.loginForm.value;
 
-    this.authService.loginUsuario(email, password)
-      .then(login => {
-        console.log("Data del login", login);
+    this.authService.loginUsuario( email, password )
+      .then( credenciales => {
+        console.log(credenciales);
         // Swal.close();
-        this.store.dispatch(ui.stopLoading());
-        this.router.navigate(['/'])
+        this.store.dispatch( ui.stopLoading() );
+        this.router.navigate(['/']);
       })
-      .catch(err => {
-        console.log("Data del error", err);
-        this.store.dispatch(ui.stopLoading());
+      .catch( err => {
+        this.store.dispatch( ui.stopLoading() );
         Swal.fire({
           icon: 'error',
-          title: 'Error:',
-          text: err.message,
+          title: 'Oops...',
+          text: err.message
         })
-
-      })
+      });
 
   }
 
