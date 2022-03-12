@@ -11,10 +11,8 @@ import { EstadisticaComponent } from './estadistica/estadistica.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { OrdenIngresoPipe } from '../pipes/orden-ingreso.pipe';
-
-
-
-
+import { StoreModule } from '@ngrx/store';
+import { ingresoEgresoReducer } from './ingreso-egreso.reducer';
 
 @NgModule({
   declarations: [
@@ -26,10 +24,11 @@ import { OrdenIngresoPipe } from '../pipes/orden-ingreso.pipe';
   ],
   imports: [
     CommonModule,
+    StoreModule.forFeature('ingresosEgresos', ingresoEgresoReducer),
     ReactiveFormsModule,
-    DashboardRoutesModule,
     ChartsModule,
     SharedModule,
+    DashboardRoutesModule
   ]
 })
 export class IngresoEgresoModule { }

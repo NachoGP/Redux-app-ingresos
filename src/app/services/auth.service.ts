@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs';
 })
 export class AuthService {
 
-  userSubscription?: Subscription;
+  public userSubscription?: Subscription;
   private _user?: Usuario;
 
   get user() {
